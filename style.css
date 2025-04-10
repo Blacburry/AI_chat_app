@@ -1,15 +1,18 @@
+/* Import modern fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 /* General body styling for a darker aesthetic */
 body {
-  font-family: 'Poppins', sans-serif; /* Modern font */
+  font-family: 'Poppins', sans-serif;
   margin: 0;
-  padding: 0;
-  background: linear-gradient(135deg, #0c0c0c, #1a1a1a); /* Darker gradient */
-  color: #ffffff; /* White text */
+  padding: 20px;
+  background: linear-gradient(135deg, #0c0c0c, #1a1a1a);
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: auto; /* Allow height to expand on smaller screens */
   overflow: auto;
 }
 
@@ -17,41 +20,40 @@ body {
 header {
   width: 100%;
   text-align: center;
-  padding: 50px; /* Bigger header space */
+  padding: 30px 20px;
 }
 
 header h1 {
-  font-size: 4rem; /* Larger font size */
-  font-weight: bold; /* Make the text bold */
+  font-size: 2.5rem; /* Smaller size for better mobile view */
+  font-weight: bold;
   margin: 0;
-  animation: colorChange 5s infinite; /* Apply fluid color-changing animation */
+  animation: colorChange 5s infinite;
 }
 
 /* Container styling */
 .container {
-  width: 90%;
+  width: 100%;
   max-width: 600px;
-  background: rgba(15, 15, 15, 0.9); 
-  border: 2px solid; 
+  background: rgba(15, 15, 15, 0.9);
+  border: 2px solid;
   border-radius: 10px;
   animation: colorChange 5s infinite;
   box-shadow: 0 8px 20px rgba(255, 51, 204, 0.5);
-  padding: 30px;
-  padding-right: 85px;
-  padding-left: 55px; /* ✅ Add this */
+  padding: 25px 20px;
   text-align: center;
-  margin-top: 60px;
+  margin-top: 40px;
+  box-sizing: border-box;
 }
 
-
+/* Input styling */
 input[type="text"] {
   width: 100%;
   padding: 15px;
   margin-top: 15px;
-  border: 1px solid #ffffff; /* White input border */
+  border: 1px solid #ffffff;
   border-radius: 5px;
-  background-color: #121212; /* Dark input background */
-  color: #ffffff; /* White text */
+  background-color: #121212;
+  color: #ffffff;
   transition: border-color 0.3s, box-shadow 0.3s;
   font-size: 1rem;
 }
@@ -67,46 +69,48 @@ button {
   margin-top: 20px;
   padding: 15px 20px;
   font-size: 1rem;
-  background-color: transparent; /* Transparent background */
-  color: #ffffff; /* White text */
-  border: 2px solid; /* Border with animation applied */
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid;
   border-radius: 5px;
-  animation: colorChange 5s infinite; /* Same animation as header */
+  animation: colorChange 5s infinite;
   cursor: pointer;
   text-transform: uppercase;
   transition: background-color 0.3s, transform 0.2s;
   box-shadow: 0 4px 15px rgba(255, 51, 204, 0.6);
+  width: 100%;
 }
 
 button:hover {
-  background-color: rgba(255, 102, 255, 0.1); /* Slight background tint on hover */
+  background-color: rgba(255, 102, 255, 0.1);
   transform: scale(1.05);
 }
 
+/* Result display styling */
 #result {
   margin-top: 20px;
   padding: 15px;
-  border: 2px solid #ffffff; /* White result border */
-  background-color: #1a1a1a; /* Dark result background */
+  border: 2px solid #ffffff;
+  background-color: #1a1a1a;
   border-radius: 5px;
   font-size: 1rem;
-  text-align: right;
-  padding-right: 610px;
-  color: #ffffff; /* White text */
+  text-align: left;
+  padding-right: 20px;
+  padding-left: 20px;
+  color: #ffffff;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 /* Loader animation */
 .loader {
   border: 8px solid rgba(255, 255, 255, 0.1);
-  border-top: 8px solid #ff33cc; /* Pink loader */
+  border-top: 8px solid #ff33cc;
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  animation: spin 1s linear infinite; /* Spinning animation */
+  animation: spin 1s linear infinite;
   margin: 20px auto;
 }
 
@@ -121,19 +125,51 @@ button:hover {
 
 /* Shared color-changing animation for header, container border, and button border */
 @keyframes colorChange {
-  0% { border-color: #ff33cc; color: #ff33cc; }
-  25% { border-color: #ff66ff; color: #ff66ff; }
-  50% { border-color: #cc33ff; color: #cc33ff; }
-  75% { border-color: #9933ff; color: #9933ff; }
-  100% { border-color: #6600cc; color: #6600cc; }
+  0% {
+    border-color: #ff33cc;
+    color: #ff33cc;
+  }
+  25% {
+    border-color: #ff66ff;
+    color: #ff66ff;
+  }
+  50% {
+    border-color: #cc33ff;
+    color: #cc33ff;
+  }
+  75% {
+    border-color: #9933ff;
+    color: #9933ff;
+  }
+  100% {
+    border-color: #6600cc;
+    color: #6600cc;
+  }
 }
 
 /* Footer styling */
 footer {
   margin-top: 30px;
   font-size: 0.9rem;
-  color: #ffffff; /* White footer text */
+  color: #ffffff;
 }
 
-/* Import modern fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+/* Responsive tweaks for mobile screens */
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 2rem;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 12px;
+  }
+
+  input[type="text"] {
+    font-size: 0.95rem;
+  }
+}
