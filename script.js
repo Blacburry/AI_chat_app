@@ -26,7 +26,7 @@ searchButton.addEventListener('click', async () => {
   
   User: ${userQuery}
   Assistant:`,
-        model: 'qwen2.5-coder-3b-instruct',
+        model: 'Hermes-3-Llama-3.2-3B',
         max_tokens: 200,
         temperature: 0.8, // a little more creativity
         top_p: 0.95,
