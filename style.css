@@ -1,51 +1,132 @@
+/* General body styling for a darker aesthetic */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f3f4f6;
+  font-family: 'Poppins', sans-serif; /* Modern font */
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #0c0c0c, #1a1a1a); /* Darker gradient */
+  color: #ffffff; /* White text */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Header styling */
+header {
+  width: 100%;
+  text-align: center;
+  padding: 50px; /* Bigger header space */
+}
+
+header h1 {
+  font-size: 4rem; /* Larger font size */
+  font-weight: bold; /* Make the text bold */
+  margin: 0;
+  animation: colorChange 5s infinite; /* Apply fluid color-changing animation */
+}
+
+/* Container styling */
+.container {
+  width: 90%;
+  max-width: 600px;
+  background: rgba(15, 15, 15, 0.9); /* Slight transparency for modern feel */
+  border: 2px solid; /* Border with animation applied */
+  border-radius: 10px;
+  animation: colorChange 5s infinite; /* Same animation as header */
+  box-shadow: 0 8px 20px rgba(255, 51, 204, 0.5); /* Neon pink glow */
+  padding: 30px;
+  padding-right: 55px;
+  text-align: center;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 15px;
+  margin-top: 15px;
+  border: 1px solid #ffffff; /* White input border */
+  border-radius: 5px;
+  background-color: #121212; /* Dark input background */
+  color: #ffffff; /* White text */
+  transition: border-color 0.3s, box-shadow 0.3s;
+  font-size: 1rem;
+}
+
+input[type="text"]:focus {
+  border-color: #ff66ff;
+  outline: none;
+  box-shadow: 0 0 10px #ff33cc;
+}
+
+/* Button styling with animated border */
+button {
+  margin-top: 20px;
+  padding: 15px 20px;
+  font-size: 1rem;
+  background-color: transparent; /* Transparent background */
+  color: #ffffff; /* White text */
+  border: 2px solid; /* Border with animation applied */
+  border-radius: 5px;
+  animation: colorChange 5s infinite; /* Same animation as header */
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 15px rgba(255, 51, 204, 0.6);
+}
+
+button:hover {
+  background-color: rgba(255, 102, 255, 0.1); /* Slight background tint on hover */
+  transform: scale(1.05);
+}
+
+#result {
+  margin-top: 20px;
+  padding: 15px;
+  border: 2px solid #ffffff; /* White result border */
+  background-color: #1a1a1a; /* Dark result background */
+  border-radius: 5px;
+  font-size: 1rem;
+  text-align: left;
+  color: #ffffff; /* White text */
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Loader animation */
+.loader {
+  border: 8px solid rgba(255, 255, 255, 0.1);
+  border-top: 8px solid #ff33cc; /* Pink loader */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite; /* Spinning animation */
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
-  header {
-    background-color: #4a90e2;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
+  to {
+    transform: rotate(360deg);
   }
-  .container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-  #searchBox {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 20px;
-  }
-  #searchButton {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #4a90e2;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  #searchButton:hover {
-    background-color: #357ab8;
-  }
-  #result {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-  }
-  .ad-section {
-    margin-top: 30px;
-    text-align: center;
-  }
+}
+
+/* Shared color-changing animation for header, container border, and button border */
+@keyframes colorChange {
+  0% { border-color: #ff33cc; color: #ff33cc; }
+  25% { border-color: #ff66ff; color: #ff66ff; }
+  50% { border-color: #cc33ff; color: #cc33ff; }
+  75% { border-color: #9933ff; color: #9933ff; }
+  100% { border-color: #6600cc; color: #6600cc; }
+}
+
+/* Footer styling */
+footer {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #ffffff; /* White footer text */
+}
+
+/* Import modern fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
