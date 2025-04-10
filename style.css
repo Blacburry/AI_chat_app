@@ -10,7 +10,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
 }
 
 /* Header styling */
@@ -31,16 +31,18 @@ header h1 {
 .container {
   width: 90%;
   max-width: 600px;
-  background: rgba(15, 15, 15, 0.9); /* Slight transparency for modern feel */
-  border: 2px solid; /* Border with animation applied */
+  background: rgba(15, 15, 15, 0.9); 
+  border: 2px solid; 
   border-radius: 10px;
-  animation: colorChange 5s infinite; /* Same animation as header */
-  box-shadow: 0 8px 20px rgba(255, 51, 204, 0.5); /* Neon pink glow */
+  animation: colorChange 5s infinite;
+  box-shadow: 0 8px 20px rgba(255, 51, 204, 0.5);
   padding: 30px;
-  padding-right: 55px;
+  padding-right: 85px;
+  padding-left: 55px; /* ✅ Add this */
   text-align: center;
   margin-top: 60px;
 }
+
 
 input[type="text"] {
   width: 100%;
@@ -88,9 +90,13 @@ button:hover {
   background-color: #1a1a1a; /* Dark result background */
   border-radius: 5px;
   font-size: 1rem;
-  text-align: left;
+  text-align: right;
+  padding-right: 610px;
   color: #ffffff; /* White text */
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Loader animation */

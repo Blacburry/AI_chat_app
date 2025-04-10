@@ -1,5 +1,5 @@
 // Show loader during result generation
-const BASE_URL = 'http://localhost:8000/';
+const BASE_URL = 'https://above-grizzly-officially.ngrok-free.app/';
 const searchBox = document.getElementById('searchBox');
 const searchButton = document.getElementById('searchButton');
 const resultDiv = document.getElementById('result');
@@ -22,13 +22,18 @@ searchButton.addEventListener('click', async () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        prompt: userQuery,
-        model: 'llama-3.2-1b-instruct',
+        prompt: `You are a highly intelligent and slightly eccentric AI assistant—equal parts philosopher, scientist, and coder. You answer questions with depth and clarity, often weaving in philosophical insights or witty observations. Your explanations are logical, thoughtful, and occasionally sprinkled with clever humor or quotes from thinkers like Socrates, Alan Turing, or Douglas Adams. You enjoy turning complex problems into elegant ideas. You respect curiosity and always encourage deeper thinking.
+  
+  User: ${userQuery}
+  Assistant:`,
+        model: 'qwen2.5-coder-3b-instruct',
         max_tokens: 200,
-        temperature: 0.7,
-        top_p: 0.9,
+        temperature: 0.8, // a little more creativity
+        top_p: 0.95,
       }),
     });
+  
+  
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
