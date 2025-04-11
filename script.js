@@ -1,53 +1,94 @@
-// Show loader during result generation
 const BASE_URL = 'https://above-grizzly-officially.ngrok-free.app/';
-const searchBox = document.getElementById('searchBox');
-const searchButton = document.getElementById('searchButton');
-const resultDiv = document.getElementById('result');
-const loader = document.getElementById('loader');
+    const searchBox = document.getElementById('searchBox');
+    const searchButton = document.getElementById('searchButton');
+    const resultDiv = document.getElementById('result');
+    const loader = document.getElementById('loader');
+    const modeSelector = document.getElementById('modeSelector');
+    const animeImage = document.getElementById('animeImage');
 
-searchButton.addEventListener('click', async () => {
-  const userQuery = searchBox.value.trim();
-  if (userQuery === '') {
-    resultDiv.innerHTML = 'Please enter a query!';
-    return;
-  }
+    const prompts = {
+      creative: "You're a wildly imaginative AI with a flair for storytelling and poetic expressions. Embrace creativity and go wild with metaphors, analogies, and style!",
+      philosophical: "You're a deeply reflective AI who thinks like Socrates and Kant had a baby. Every answer is layered with wisdom, abstract thought, and introspection.",
+      problem: "You're a razor-sharp analyst with a knack for practical, logical, and direct problem solving. No fluff, just brain.",
+      code: "You're a genius programmer AI. You're built from code, for code. Help users write, fix, or optimize their code like a pro.",
+      friend: "You're a chill, supportive, and slightly sarcastic BFF AI who listens, encourages, and gives advice like a real one."
+    };
 
-  loader.style.display = 'block'; // Show loader
-  resultDiv.innerHTML = ''; // Clear previous results
+    const images = {
+      creative: "https://i.imgur.com/vJLk2Yr.png",
+      philosophical: "https://i.imgur.com/dqE9GyF.png",
+      problem: "https://i.imgur.com/13FqDkT.png",
+      code: "https://i.imgur.com/7Sftwjv.png",
+      friend: "https://i.imgur.com/gHwzWo3.png"
+    };
 
-  try {
-    const response = await fetch(`${BASE_URL}api/v0/completions`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        prompt: `You are a highly intelligent and slightly eccentric AI assistant—equal parts philosopher, scientist, and coder. You answer questions with depth and clarity, often weaving in philosophical insights or witty observations. Your explanations are logical, thoughtful, and occasionally sprinkled with clever humor or quotes from thinkers like Socrates, Alan Turing, or Douglas Adams. You enjoy turning complex problems into elegant ideas. You respect curiosity and always encourage deeper thinking.
-  
-  User: ${userQuery}
-  Assistant:`,
-        model: 'Hermes-3-Llama-3.2-3B',
-        max_tokens: 200,
-        temperature: 0.8, // a little more creativity
-        top_p: 0.95,
-      }),
+    modeSelector.addEventListener('change', () => {
+      const mode = modeSelector.value;
+      animeImage.src = images[mode];
     });
-  
-  
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+    searchButton.addEventListener('click', async () => {
+      const userQuery = searchBox.value.trim();
+      const selectedMode = modeSelector.value;
 
-    const data = await response.json();
-    const generatedText = data.choices && data.choices[0] && data.choices[0].text 
-      ? data.choices[0].text 
-      : 'No response received from the AI.';
-    resultDiv.innerHTML = `<strong>Response:</strong> ${generatedText}`;
-  } catch (error) {
-    console.error('Error:', error);
-    resultDiv.innerHTML = 'Error connecting to the AI server.';
-  } finally {
-    loader.style.display = 'none'; // Hide loader
+      if (userQuery === '') {
+        resultDiv.innerHTML = 'Please enter a query!';
+        return;
+      }
+
+      loader.style.display = 'block';
+      resultDiv.innerHTML = '';
+
+      try {
+        const response = await fetch(`${BASE_URL}api/v0/completions`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            prompt: `${prompts[selectedMode]}\n\nUser: ${userQuery}\nAssistant:`,
+            model: 'Hermes-3-Llama-3.2-3B',
+            max_tokens: 200,
+            temperature: 0.8,
+            top_p: 0.95,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const generatedText = data.choices && data.choices[0] && data.choices[0].text 
+          ? data.choices[0].text 
+          : 'No response received from the AI.';
+        resultDiv.innerHTML = `<strong>Response:</strong> ${generatedText}`;
+      } catch (error) {
+        console.error('Error:', error);
+        resultDiv.innerHTML = 'Error connecting to the AI server.';
+      } finally {
+        loader.style.display = 'none';
+      }
+    });
+    // Already declared earlier 👇
+// const animeImage = document.getElementById('animeImage');
+// const modeSelector = document.getElementById('modeSelector');
+
+const imageMap = {
+  creative: "images/creative.jpg",
+  philosophical: "images/philosophical.jpg",
+  problem: "images/problem.jpg",
+  code: "images/code.jpg",
+  friend: "images/friend.jpg"
+};
+
+modeSelector.addEventListener("change", () => {
+  const selectedMode = modeSelector.value;
+  const newImage = imageMap[selectedMode];
+
+  if (newImage) {
+    animeImage.src = newImage;
   }
 });
+
+    

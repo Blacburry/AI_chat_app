@@ -10,7 +10,12 @@
   <header>
     <h1 id="headerText">🤖 AI-Powered Chatbot</h1>
   </header>
-
+  
+  <div class="anime-image-wrapper">
+    <img id="animeImage" src="images/creative.jpg" alt="Anime Assistant" />
+  </div>
+  
+  
   <script>
     alert("This website doesn't work well on phones. Like, seriously.")
   </script>
@@ -18,7 +23,19 @@
   <main class="container">
     <section class="chat-section">
       <input id="searchBox" type="text" placeholder="💬 What's on your mind?" />
-      <button id="searchButton">🚀 Generate</button>
+
+      <div class="input-row">
+        <button id="searchButton">🚀 Generate</button>
+        <label id="modeSelectorLabel" for="modeSelector">What type of answers do you want?</label>
+        <select id="modeSelector">
+          <option value="creative">Creative</option>
+          <option value="philosophical">Philosophical</option>
+          <option value="problem">Problem Solving</option>
+          <option value="code">Code Solving</option>
+          <option value="friend">Just a Friend</option>
+        </select>
+      </div>
+
       <div class="loader" id="loader" style="display: none;"></div>
       <div id="result"></div>
     </section>
@@ -34,3 +51,4 @@
   <script src="script.js"></script>
 </body>
 </html>
+

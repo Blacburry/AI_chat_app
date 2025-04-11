@@ -14,15 +14,16 @@ body {
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  padding: 20px;
+  padding: 5px;
 }
 
 /* Header */
+
 header {
   width: 100%;
   text-align: center;
   padding: 30px 20px;
-  margin-top: 50px;
+  margin-top: 1px;
 }
 
 header h1 {
@@ -41,7 +42,7 @@ header h1 {
   animation: colorChange 5s infinite;
   box-shadow: 0 8px 24px rgba(255, 51, 204, 0.5);
   padding: 40px 50px;
-  margin-top: 80px;
+  margin-top: 50px; 
   text-align: center;
 }
 
@@ -117,7 +118,7 @@ button:hover {
 
 /* Footer */
 footer {
-  margin-top: 260px;
+  margin-top: 30px;
   font-size: 0.9rem;
   color: #ffffff;
   text-align: center;
@@ -180,4 +181,103 @@ footer a:hover {
   input[type="text"] {
     font-size: 0.95rem;
   }
+}
+#modeSelectorLabel {
+  color: #ffffff;
+  font-size: 1rem;
+  margin-top: 15px;
+  display: block;
+  text-align: left;
+}
+
+#modeSelector {
+  padding: 10px;
+  margin-left: 10px;
+  background-color: #121212;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+#modeSelector:focus {
+  border-color: #ff66ff;
+  box-shadow: 0 0 10px #ff33cc;
+  outline: none;
+}
+
+.input-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#animeImage {
+  width: 180px;
+  height: auto;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255, 102, 255, 0.5);
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 600px) {
+  .input-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #modeSelector {
+    width: 100%;
+  }
+}
+
+#result {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #ffffff;
+  word-wrap: break-word;
+  text-align: left;
+  white-space: pre-wrap;
+  animation: typeWriter 2s steps(40, end) 1;
+  overflow: hidden;
+  border-right: 2px solid #ff66ff;
+}
+
+@keyframes typeWriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+.anime-image-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#animeImage {
+  max-width: 200px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(255, 51, 204, 0.5);
+  animation: floaty 3s ease-in-out infinite;
+}
+
+@keyframes floaty {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
 }
