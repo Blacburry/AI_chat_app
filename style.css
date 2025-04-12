@@ -276,9 +276,3 @@ footer a:hover {
   box-shadow: 0 8px 24px rgba(255, 51, 204, 0.5);
   animation: floaty 3s ease-in-out infinite;
 }
-
-@keyframes floaty {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
-}

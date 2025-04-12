@@ -53,12 +53,12 @@ searchButton.addEventListener('click', async () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        prompt: `${prompts[selectedMode]}\n\nUser: ${userQuery}\nAssistant:`,
+        prompt: `${prompts[selectedMode]}\n\n${userQuery}`,
         model: 'Hermes-3-Llama-3.2-3B',
         max_tokens: 200,
         temperature: 0.8,
         top_p: 0.95,
-      }),
+      }),      
     });
 
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
