@@ -5,6 +5,7 @@ const resultDiv = document.getElementById('result');
 const loader = document.getElementById('loader');
 const modeSelector = document.getElementById('modeSelector');
 const animeImage = document.getElementById('animeImage');
+const customPromptBox = document.getElementById('customPromptBox'); // ✅ Make sure this input exists in HTML
 
 // Mode-specific prompts
 const prompts = {
@@ -21,26 +22,45 @@ const imageMap = {
   philosophical: "images/philosophical.jpg",
   problem: "images/problem.jpg",
   code: "images/code.jpg",
-  friend: "images/friend.jpg"
+  friend: "images/friend.jpg",
+  custom: "images/custom.jpg" // Optional: custom image if you want
 };
 
-// 💫 Switch anime image based on mode
+// 💫 Switch anime image + show custom box if needed
 modeSelector.addEventListener("change", () => {
   const selectedMode = modeSelector.value;
   const newImage = imageMap[selectedMode];
-  if (newImage) {
-    animeImage.src = newImage;
-  }
+
+  if (newImage) animeImage.src = newImage;
+
+  // 👀 Show input box only for "custom" mode
+  customPromptBox.style.display = selectedMode === 'custom' ? 'block' : 'none';
 });
 
 // 🧠 Fetch response ONLY when user clicks Generate
 searchButton.addEventListener('click', async () => {
   const userQuery = searchBox.value.trim();
   const selectedMode = modeSelector.value;
+  const customPrompt = customPromptBox.value.trim();
 
   if (userQuery === '') {
     resultDiv.innerHTML = 'Please enter a query!';
     return;
+  }
+
+  let promptText;
+  if (selectedMode === 'custom') {
+    if (customPrompt === '') {
+      resultDiv.innerHTML = 'Please enter a custom prompt!';
+      return;
+    }
+    promptText = `You are now roleplaying strictly as: "${customPrompt}". Respond to the following prompt in one paragraph, staying completely in character at all times.
+  
+    User: ${userQuery}
+      
+    Assistant:`; 
+  } else {
+    promptText = `${prompts[selectedMode]}\n\nUser: ${userQuery}\nAssistant:`;
   }
 
   loader.style.display = 'block';
@@ -53,8 +73,8 @@ searchButton.addEventListener('click', async () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        prompt: `${prompts[selectedMode]}\n\n${userQuery}`,
-        model: 'Hermes-3-Llama-3.2-3B',
+        prompt: promptText,
+        model: 'Llama-3.2-3B-Instruct-uncensored',
         max_tokens: 200,
         temperature: 0.8,
         top_p: 0.95,
@@ -65,7 +85,14 @@ searchButton.addEventListener('click', async () => {
 
     const data = await response.json();
     const generatedText = data.choices?.[0]?.text ?? 'No response received from the AI.';
-    resultDiv.innerHTML = `<strong>Response:</strong> ${generatedText}`;
+    
+    // Remove weird characters like <|end_of_text|> and <|begin_of_text|> and clean up response
+    const cleanText = generatedText
+      .replace(/<\|.*?\|>/g, '')  // Remove <|end_of_text|> tags
+      .replace(/\n+/g, ' ')      // Flatten newlines
+      .trim();
+
+    resultDiv.innerHTML = `<strong>Response:</strong> ${cleanText}`;
   } catch (error) {
     console.error('Error:', error);
     resultDiv.innerHTML = 'Error connecting to the AI server.';
