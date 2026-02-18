@@ -1,4 +1,4 @@
-const BASE_URL = 'https://above-grizzly-officially.ngrok-free.app/';
+const BASE_URL = 'https://52fb-2a09-bac5-3b51-11c3-00-1c5-114.ngrok-free.app/';
 const searchBox = document.getElementById('searchBox');
 const searchButton = document.getElementById('searchButton');
 const resultDiv = document.getElementById('result');
