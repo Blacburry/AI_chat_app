@@ -250,19 +250,11 @@ footer a:hover {
   word-wrap: break-word;
   text-align: left;
   white-space: pre-wrap;
-  animation: typeWriter 2s steps(40, end) 1;
-  overflow: hidden;
-  border-right: 2px solid #ff66ff;
+  overflow-wrap: break-word;
 }
 
-@keyframes typeWriter {
-  from {
-    width: 0;
-  }
-  to {
-    width: 100%;
-  }
-}
+
+
 .anime-image-wrapper {
   width: 100%;
   display: flex;

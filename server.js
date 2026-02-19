@@ -10,13 +10,13 @@ app.use(express.static(__dirname));
 
 // Proxy API requests to LM Studio (running on port 1234)
 app.use('/api', createProxyMiddleware({
-  target: 'http://localhost:1234', // LM Studio default port
+  target: 'http://127.0.0.1:1234', // LM Studio default port (IPv4)
   changeOrigin: true,
   pathRewrite: {
-    '^/api': '/api', // keep the /api prefix
+    '^/api': '', // Remove /api prefix when forwarding to LM Studio
   },
   onProxyReq: (proxyReq, req, res) => {
-    // console.log(`Proxying request: ${req.method} ${req.url} -> http://localhost:1234`);
+    // console.log(`Proxying request: ${req.method} ${req.url} -> http://127.0.0.1:1234`);
   }
 }));
 

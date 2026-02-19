@@ -6,7 +6,7 @@ echo 1. Launching Node.js Server (Port 3000)...
 start "AI App Server" cmd /k "node server.js"
 
 echo 2. Launching Ngrok Tunnel (above-grizzly-officially.ngrok-free.app)...
-start "Ngrok Tunnel" cmd /k "ngrok http --domain=above-grizzly-officially.ngrok-free.app 3000"
+start "Ngrok Tunnel" cmd /k "C:\Users\chydi\Downloads\ngrok-v3-stable-windows-amd64\ngrok.exe http --domain=above-grizzly-officially.ngrok-free.app 3000"
 
 echo =======================
 echo DONE! 

@@ -68,7 +68,7 @@ searchButton.addEventListener('click', async () => {
 
   try {
     // Original path used in the first successful single-tunnel version
-    const response = await fetch(`${BASE_URL}api/v0/completions`, {
+    const response = await fetch(`${BASE_URL}api/v1/completions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
