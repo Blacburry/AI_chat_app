@@ -1,4 +1,4 @@
-const BASE_URL = '/'; // API is now hosted on the same server
+const BASE_URL = 'https://above-grizzly-officially.ngrok-free.app/'; // Direct Ngrok Tunnel to LM Studio
 const searchBox = document.getElementById('searchBox');
 const searchButton = document.getElementById('searchButton');
 const resultDiv = document.getElementById('result');
@@ -67,6 +67,7 @@ searchButton.addEventListener('click', async () => {
   resultDiv.innerHTML = '';
 
   try {
+    // Original path used in the first successful single-tunnel version
     const response = await fetch(`${BASE_URL}api/v0/completions`, {
       method: 'POST',
       headers: {
