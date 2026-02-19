@@ -1,4 +1,4 @@
-const BASE_URL = 'https://above-grizzly-officially.ngrok-free.app/'; // Direct Ngrok Tunnel to LM Studio
+const BASE_URL = '/'; // API is now hosted on the same server
 const searchBox = document.getElementById('searchBox');
 const searchButton = document.getElementById('searchButton');
 const resultDiv = document.getElementById('result');

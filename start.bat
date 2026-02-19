@@ -1,12 +1,15 @@
 @echo off
-echo Starting Ngrok Tunnel for AI Chat App (Direct to Port 1234)...
+echo Starting AI Chat App...
 echo =======================
 
-echo Launching Ngrok Tunnel (above-grizzly-officially.ngrok-free.app -> Port 1234)...
-start "Ngrok Tunnel" cmd /k "ngrok http --domain=above-grizzly-officially.ngrok-free.app 1234"
+echo 1. Launching Node.js Server (Port 3000)...
+start "AI App Server" cmd /k "node server.js"
+
+echo 2. Launching Ngrok Tunnel (above-grizzly-officially.ngrok-free.app)...
+start "Ngrok Tunnel" cmd /k "ngrok http --domain=above-grizzly-officially.ngrok-free.app 3000"
 
 echo =======================
 echo DONE! 
-echo Ngrok is now forwarding to localhost:1234 (e.g., LM Studio).
-echo Access at: https://above-grizzly-officially.ngrok-free.app
+echo Please ensure LM Studio is running on Port 1234.
+echo Access your app at: https://above-grizzly-officially.ngrok-free.app
 pause
